@@ -8,8 +8,15 @@ let PORT = config.port;
 // console.log(config.port)
 // console.log(config.mongoose.url)
 // console.log(config.mongoose.url);
+
+//"mongodb+srv://pritam14:pritam14@xflix.7nlekm0.mongodb.net/?retryWrites=true&w=majority&appName=xflix"
+
+//"mongodb://127.0.0.1:27017/xflix"
 mongoose
-  .connect("mongodb://127.0.0.1:27017/xflix")
+  .connect(config.mongoose.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((res) => console.log("DB Connected "))
   .catch((err) => {
     console.log(err);

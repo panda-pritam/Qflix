@@ -19,17 +19,16 @@ let getAllvideos = catchAsync(async (req, res) => {
     let genres = req.query.genres ? req.query.genres.split(",") : ["All"];
     let sortBy = req.query.sortBy ? req.query.sortBy : "";
     let list = await getAll(title, contentRating, genres, sortBy);
-    if(list.length===0)
-    {
+    if (list.length === 0) {
       return res.status(404).json({ message: "No Videos Found" });
     }
     // req.body({ videos: list });
-    let resultObj={
-      "videos": list 
-    }
+    let resultObj = {
+      videos: list,
+    };
     // res.status(200).json({body:resultObj});
-    res.body=resultObj;
-    res.status(200).send({"videos":list});
+    res.body = resultObj;
+    res.status(200).send({ videos: list });
     // res.send(resultObj);
     // res.status(httpStatus.OK).json({ videos: list });
   } catch (error) {
@@ -58,7 +57,7 @@ let getVideoById = catchAsync(async (req, res) => {
     };
     // res.status(httpStatus.FOUND).json(result);
     //res.send(resultObj)
-    res.body=resultObj;
+    res.body = resultObj;
     res.status(httpStatus.OK).json(resultObj);
   } else {
     throw new ApiError(
@@ -114,13 +113,14 @@ let addNewVideo = catchAsync(async (req, res) => {
 let updateView = catchAsync(async (req, res) => {
   console.log("View controller");
   let { videoId } = req.params;
-  await updateViewCount(videoId);
-  res.status(204).send();
+  let obj = await updateViewCount(videoId);
+  res.status(201).send(obj);
 });
 let updateVotes = catchAsync(async (req, res) => {
+  console.log("vote controller");
   let { videoId } = req.params;
-  await updateVoteCount(videoId, req.body);
-  res.status(204).send("Votes updated");
+  let obj = await updateVoteCount(videoId, req.body);
+  res.status(201).send(obj);
 });
 module.exports = {
   getAllvideos,
