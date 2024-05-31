@@ -1,0 +1,28 @@
+{
+  "name": "xflix_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    
+    "dev": "nodemon ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.19.2",
+    "http-status": "^1.4.0",
+    "joi": "^17.3.0",
+    "mongodb": "3.7",
+    "mongoose": "^5.10.9",
+    "mongoose-validator": "^2.1.0",
+    "nodemon": "^3.1.1",
+    "pm2": "^5.4.0",
+    "validator": "^13.0.0"
+  }
+}
