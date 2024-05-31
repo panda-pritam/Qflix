@@ -1,0 +1,37 @@
+.feedbackButton {
+  height: 47px;
+  width: 170px;
+  border: 1px solid #121212;
+
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-family: "Poppins";
+  font-size: 18px;
+  letter-spacing: 0.25px;
+  cursor: pointer;
+}
+.header {
+  font-weight: 600;
+  font-family: "Poppins";
+  font-size: 18px;
+  color: black;
+  text-align: center;
+}
+.submitBtn {
+  height: 47px;
+  width: 200px;
+  border: 1px solid #34c94b;
+  background-color: #34c94b;
+  color: #ffffff;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-family: "Poppins";
+  font-size: 18px;
+  letter-spacing: 0.25px;
+  cursor: pointer;
+}
+.css-knqc4i-MuiDialogActions-root {
+  justify-content: center !important;
+}
