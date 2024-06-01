@@ -13,13 +13,13 @@ import styles from "./desktop.module.css";
 import searchIcon from "./search-icon.svg";
 import Upload from "./upload";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setToken, setLogin } from "../../redux/slices/token";
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
   padding: 7,
   "& .MuiSwitch-switchBase": {
-    margin: 1,
     padding: 0,
     transform: "translateX(6px)",
     "&.Mui-checked": {
@@ -63,20 +63,65 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 export default function DesktopHeader() {
   const navigate = useNavigate();
-  let [isLogin, setLogin] = useState(false);
+  let [isLogin, setLogined] = useState(false);
+  let dispactch = useDispatch();
   useEffect(() => {
-    let token = JSON.parse(localStorage.getItem("token"));
+    let { token } = JSON.parse(localStorage.getItem("token"));
     console.log(token);
     if (token) {
-      setLogin(true);
+      setLogined(true);
+      dispactch(setLogin(true));
+      dispactch(setToken(token));
     }
   }, []);
+  let logoutHandler = (e) => {
+    localStorage.setItem("token", JSON.stringify({ token: null }));
+    setLogin(false);
+
+    window.location.reload();
+  };
   return (
     <div>
       <nav>
         <div>
           <img src="xlogo.png" alt="xflix logo" />
         </div>
+        <Box className={styles.search_bar} id={styles.desktopSearchBar}>
+          <input
+            className={styles.search_input}
+            placeholder="Search Vedio title"
+          />
+          <button className={styles.search_button}>
+            <img src={searchIcon} className={styles.logo_img}></img>
+          </button>
+        </Box>
+        <Box className={styles.btnDiv}>
+          <FormControlLabel
+            control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+          />
+          {isLogin ? (
+            <Button
+              variant="contained"
+              type="submit"
+              size="large"
+              onClick={logoutHandler}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              type="submit"
+              size="large"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </Button>
+          )}
+          <Upload />
+        </Box>
+      </nav>
+      <div id={styles.mobileSearchBar}>
         <Box className={styles.search_bar}>
           <input
             className={styles.search_input}
@@ -86,23 +131,7 @@ export default function DesktopHeader() {
             <img src={searchIcon} className={styles.logo_img}></img>
           </button>
         </Box>
-        <Box>
-          <FormControlLabel
-            control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-            // label="MUI switch"
-          />
-          {isLogin ? (
-            <Button variant="contained" type="submit" size="large">
-              Logout
-            </Button>
-          ) : (
-            <Button variant="contained" type="submit" size="large">
-              Login
-            </Button>
-          )}
-          <Upload />
-        </Box>
-      </nav>
+      </div>
     </div>
   );
 }

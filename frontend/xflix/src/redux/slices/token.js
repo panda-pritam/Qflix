@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import data from "../data/initialTodos";
 
-const videoListSlice = createSlice({
-  name: "VideoListReducer",
+const tokenSlice = createSlice({
+  name: "tokenReducer",
   initialState: {
-    videoList: [],
-    filters: { genres: "", contentRating: "", sortBy: "" },
+    token: "",
+    isLogin: false,
   },
   reducers: {
-    setVideoList: (state, action) => {
-      state.videoList = action.payload;
+    setToken: (state, action) => {
+      state.token = action.payload;
+    },
+    setLogin: (state, action) => {
+      state.isLogin = action.payload;
     },
   },
 });
@@ -21,5 +24,5 @@ const videoListSlice = createSlice({
 // export const { changeFilterStatus, addTodo, toggleTodo } = todoSlice.actions;
 //export default todoSlice.reducer;
 
-export const { setVideoList } = videoListSlice.actions;
-export default videoListSlice.reducer;
+export const { setToken, setLogin } = tokenSlice.actions;
+export default tokenSlice.reducer;

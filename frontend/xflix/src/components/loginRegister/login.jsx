@@ -13,6 +13,7 @@ import login from "../../Api_calls/login";
 export default function Login() {
   let [loginData, setLoginData] = useState({ email: "", password: "" });
   let [loader, setLoader] = useState(false);
+
   const navigate = useNavigate();
   let onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -26,6 +27,7 @@ export default function Login() {
       });
       localStorage.setItem("token", JSON.stringify({ token: data }));
       setLoader(false);
+
       navigate("/");
     } else {
       toast.error("Please Enter correct email or password.", {

@@ -27,6 +27,7 @@ export default function Register() {
   };
   let onSubmitHandler = async (e) => {
     e.preventDefault();
+    setLoader(true);
     if (data.re_password !== data.password) {
       toast.warn("Both passwards are not matching", {
         theme: "colored",
@@ -41,6 +42,17 @@ export default function Register() {
     };
     let res = await register(apiObj);
     console.log(res);
+    if (res.code === 200) {
+      toast.error(`${res.message}`, {
+        theme: "colored",
+      });
+    } else {
+      toast.success("Registrations complete Thank you.", {
+        theme: "colored",
+      });
+      navigate("/login");
+    }
+    setLoader(false);
   };
   return (
     <Box className={styles.mainDiv}>
@@ -95,6 +107,12 @@ export default function Register() {
             onChangeHandler(e);
           }}
         />
+        {loader && (
+          <Box sx={{ display: "flex", justifyContent: "center", m: "2" }}>
+            {" "}
+            <CircularProgress />
+          </Box>
+        )}
         <div className={styles.BtnDiv}>
           <Button onClick={(e) => navigate("/")}>Back to Home Page</Button>
           <Button variant="contained" type="submit" size="large">
@@ -104,12 +122,6 @@ export default function Register() {
             Reset
           </Button>
         </div>
-        {loader && (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            {" "}
-            <CircularProgress />
-          </Box>
-        )}
       </form>
     </Box>
   );

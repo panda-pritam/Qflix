@@ -1,8 +1,10 @@
 // import preferencesReducer from "./preferencesSlice";
 // import todoReducer from "./todoSlice";
 
-import videoListReduce from "./vedioList.slice";
+import VideoListReducer from "./vedioList.slice";
+import tokenReducer from "./token";
 
 export const reducersMapping = {
-  videoListReduce: videoListReduce,
+  VideoListReducer: VideoListReducer,
+  tokenReducer: tokenReducer,
 };

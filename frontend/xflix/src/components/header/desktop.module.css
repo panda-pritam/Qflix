@@ -1,5 +1,5 @@
 .search_bar {
-  width: 41vw;
+  width: 38vw;
   height: 48px;
   display: flex;
   border: 1px solid black;
@@ -50,4 +50,32 @@ nav {
 
   height: 74px;
   padding: 0px 32px;
+}
+.btnDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.btnDiv Button {
+  margin: 0 16px;
+  height: 47px;
+}
+
+.css-j204z7-MuiFormControlLabel-root {
+  margin-right: 0 !important;
+}
+#mobileSearchBar {
+  display: none;
+}
+@media (min-width: 200px) and (max-width: 500px) {
+  #mobileSearchBar {
+    display: block;
+  }
+  .search_bar {
+    width: 100vw;
+  }
+  #desktopSearchBar {
+    display: none;
+  }
 }
