@@ -1,11 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
 import DesktopHeader from "./components/header/desktopHeader";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <h1>Xflix</h1>
       <DesktopHeader />
     </div>
   );

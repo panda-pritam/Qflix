@@ -14,6 +14,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { useEffect, useState } from "react";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import dayjs from "dayjs";
 import "./feedBack.css";
 
@@ -33,13 +34,15 @@ export default function Upload() {
 
   return (
     <React.Fragment>
-      <button
-        variant="outlined"
-        onClick={handleClickOpen}
-        className="feedbackButton"
+      <Button
+        component="label"
+        role={undefined}
+        variant="contained"
+        tabIndex={-1}
+        startIcon={<CloudUploadIcon />}
       >
-        UPLOAD
-      </button>
+        Upload Video
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
