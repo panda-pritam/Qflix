@@ -1,4 +1,4 @@
-import { useEffect, useStatecd } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@mui/system/Box";
 import { styled } from "@mui/material/styles";
@@ -7,10 +7,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
 // import xlogo.png ;
 import styles from "./desktop.module.css";
 import searchIcon from "./search-icon.svg";
 import Upload from "./upload";
+import { useNavigate } from "react-router-dom";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -60,6 +62,15 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function DesktopHeader() {
+  const navigate = useNavigate();
+  let [isLogin, setLogin] = useState(false);
+  useEffect(() => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    console.log(token);
+    if (token) {
+      setLogin(true);
+    }
+  }, []);
   return (
     <div>
       <nav>
@@ -80,6 +91,15 @@ export default function DesktopHeader() {
             control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
             // label="MUI switch"
           />
+          {isLogin ? (
+            <Button variant="contained" type="submit" size="large">
+              Logout
+            </Button>
+          ) : (
+            <Button variant="contained" type="submit" size="large">
+              Login
+            </Button>
+          )}
           <Upload />
         </Box>
       </nav>

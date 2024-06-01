@@ -1,16 +1,22 @@
 import { useEffect, useState, useStatecd } from "react";
 import axios from "axios";
 import Box from "@mui/system/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import styles from "./loginRegister.module.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import login from "../../Api_calls/login";
+
 export default function Login() {
   let [loginData, setLoginData] = useState({ email: "", password: "" });
+  let [loader, setLoader] = useState(false);
+  const navigate = useNavigate();
   let onSubmitHandler = async (e) => {
     e.preventDefault();
+    setLoader(true);
     console.log(loginData);
     let data = await login(loginData);
     console.log(data);
@@ -18,10 +24,14 @@ export default function Login() {
       toast.success("Login successfully", {
         theme: "colored",
       });
+      localStorage.setItem("token", JSON.stringify({ token: data }));
+      setLoader(false);
+      navigate("/");
     } else {
       toast.error("Please Enter correct email or password.", {
         theme: "colored",
       });
+      setLoader(false);
     }
   };
   return (
@@ -69,11 +79,19 @@ export default function Login() {
         />
 
         <div className={styles.BtnDiv}>
-          <Button href="#text-buttons">Register your self</Button>
+          <Button onClick={(e) => navigate("/register")}>
+            Register your self
+          </Button>
           <Button variant="contained" type="submit" size="large">
             Login
           </Button>
         </div>
+        {loader && (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            {" "}
+            <CircularProgress />
+          </Box>
+        )}
       </form>
     </Box>
   );

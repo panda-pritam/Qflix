@@ -45,7 +45,9 @@ const register = catchAsync(async (req, res) => {
   console.log("Body-> ", body);
   let user = await createUser(body);
   let token = await generateAuthTokens(user);
-  res.status(httpStatus.CREATED).send({ user: user, tokens: token });
+  res
+    .status(httpStatus.CREATED)
+    .send({ code: httpStatus.CREATED, user: user, tokens: token });
 });
 
 /**

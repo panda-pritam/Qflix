@@ -1,17 +1,51 @@
-import { useEffect, useStatecd } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@mui/system/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import styles from "./loginRegister.module.css";
 import { ToastContainer, toast } from "react-toastify";
+import register from "../../Api_calls/register";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const navigate = useNavigate();
+  let [loader, setLoader] = useState(false);
+  let [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    re_password: "",
+  });
+  let onChangeHandler = (e) => {
+    let obj_key = e.target.name;
+    let val = e.target.value;
+    data[e.target.name] = e.target.value;
+    setData({ ...data });
+  };
+  let onSubmitHandler = async (e) => {
+    e.preventDefault();
+    if (data.re_password !== data.password) {
+      toast.warn("Both passwards are not matching", {
+        theme: "colored",
+      });
+
+      return;
+    }
+    let apiObj = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+    let res = await register(apiObj);
+    console.log(res);
+  };
   return (
     <Box className={styles.mainDiv}>
-      <ToastContainer />
-      <form>
+      <ToastContainer position="top-center" />
+      <form onSubmit={onSubmitHandler}>
         <h1>Register your self to explore more fetures.</h1>
         <p>Please Enter your Details.</p>
         <TextField
@@ -24,10 +58,10 @@ export default function Register() {
           type="text"
           fullWidth
           variant="outlined"
+          onChange={onChangeHandler}
         />
         <TextField
           required
-          autoFocus
           margin="dense"
           id="email"
           name="email"
@@ -35,10 +69,10 @@ export default function Register() {
           type="email"
           fullWidth
           variant="outlined"
+          onChange={onChangeHandler}
         />
         <TextField
           required
-          autoFocus
           margin="dense"
           id="password"
           name="password"
@@ -46,10 +80,10 @@ export default function Register() {
           type="password"
           fullWidth
           variant="outlined"
+          onChange={onChangeHandler}
         />
         <TextField
           required
-          autoFocus
           margin="dense"
           id="re_password"
           name="re_password"
@@ -57,8 +91,12 @@ export default function Register() {
           type="password"
           fullWidth
           variant="outlined"
+          onChange={(e) => {
+            onChangeHandler(e);
+          }}
         />
         <div className={styles.BtnDiv}>
+          <Button onClick={(e) => navigate("/")}>Back to Home Page</Button>
           <Button variant="contained" type="submit" size="large">
             Register
           </Button>
@@ -66,6 +104,12 @@ export default function Register() {
             Reset
           </Button>
         </div>
+        {loader && (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            {" "}
+            <CircularProgress />
+          </Box>
+        )}
       </form>
     </Box>
   );

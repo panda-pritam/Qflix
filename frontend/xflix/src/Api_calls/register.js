@@ -1,7 +1,7 @@
 import { URL } from "./apiEndPoint";
 import axios from "axios";
 
-export default async function login(data) {
+export default async function register(data) {
   //   try {
   //     const response = await axios.get(`${URL}/v1/login`, {
   //       method: "GET",
@@ -15,12 +15,12 @@ export default async function login(data) {
 
   try {
     console.log("Data-> ", data);
-    const response = await axios.post(`${URL}/v1/login`, data);
+    const response = await axios.post(`${URL}/v1/user`, data);
 
     // console.log(response.data.tokens.access.token);
 
     // console.log(response.data);
-    return response.data.tokens.access.token;
+    return response.data;
   } catch (error) {
     console.log(error);
     return false;
