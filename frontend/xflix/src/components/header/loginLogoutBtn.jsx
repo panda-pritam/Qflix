@@ -11,12 +11,16 @@ export default function LoginLogoutBtn() {
   let [isLogin, setLogined] = useState(false);
   let dispactch = useDispatch();
   useEffect(() => {
-    let { token } = JSON.parse(localStorage.getItem("token"));
-    console.log(token);
-    if (token) {
-      setLogined(true);
-      dispactch(setLogin(true));
-      dispactch(setToken(token));
+    let tokenObj = JSON.parse(localStorage.getItem("token"));
+    //console.log(token);
+    let token = "";
+    if (tokenObj) {
+      if (tokenObj.token) {
+        token = tokenObj.token;
+        setLogined(true);
+        dispactch(setLogin(true));
+        dispactch(setToken(token));
+      }
     }
   }, []);
   let logoutHandler = (e) => {
