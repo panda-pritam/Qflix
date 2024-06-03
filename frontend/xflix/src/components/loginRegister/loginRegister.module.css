@@ -1,19 +1,41 @@
-.mainDiv {
-  height: 90vh;
+.darkDiv {
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  background: rgb(53, 49, 49) !important;
+  /* padding: 4px; */
 }
-form {
-  min-width: 350px;
+.lightDiv {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* padding: 4px; */
+}
+.LightForm {
+  min-width: 300px;
   max-width: 600px;
   padding: 2rem;
   border: 2px solid black;
-  border-radius: 15px;
+  border-radius: 20px;
 }
+.darkForm {
+  min-width: 300px;
+  max-width: 600px;
+  padding: 2rem;
+  border: 2px solid black;
+  color: black;
+  background-color: white !important;
+  border-radius: 20px;
+}
+
 .BtnDiv {
   display: flex;
   flex-wrap: wrap;
@@ -22,4 +44,16 @@ form {
 }
 .BtnDiv Button {
   margin: 0.5rem;
+}
+@media (min-width: 200px) and (max-width: 500px) {
+  form {
+    padding: 1rem;
+    margin: 4px;
+  }
+  /* .mainDiv {
+    padding: 8px;
+  } */
+}
+#darkBtn {
+  color: black !important;
 }

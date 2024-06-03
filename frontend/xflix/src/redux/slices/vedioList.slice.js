@@ -5,11 +5,14 @@ const videoListSlice = createSlice({
   name: "VideoListReducer",
   initialState: {
     videoList: [],
-    filters: { genres: "", contentRating: "", sortBy: "" },
+    filters: { genres: "", contentRating: "", sortBy: "", title: "" },
   },
   reducers: {
     setVideoList: (state, action) => {
       state.videoList = action.payload;
+    },
+    setFiltersObj: (state, action) => {
+      state.filters = action.payload;
     },
   },
 });
@@ -21,5 +24,5 @@ const videoListSlice = createSlice({
 // export const { changeFilterStatus, addTodo, toggleTodo } = todoSlice.actions;
 //export default todoSlice.reducer;
 
-export const { setVideoList } = videoListSlice.actions;
+export const { setVideoList, setFiltersObj } = videoListSlice.actions;
 export default videoListSlice.reducer;

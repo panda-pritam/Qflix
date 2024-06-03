@@ -1,5 +1,14 @@
+nav {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  /* width: 98.8vw; */
+  height: 74px;
+  /* padding: 0px 22px; */
+  /* box-sizing: border-box; */
+}
 .search_bar {
-  width: 38vw;
+  width: 60%;
   height: 48px;
   display: flex;
   border: 1px solid black;
@@ -42,24 +51,19 @@
 .logo_img {
   height: 20px;
   width: 20px;
+  margin-right: 1rem;
 }
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  height: 74px;
-  padding: 0px 32px;
-}
 .btnDiv {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   align-items: center;
 }
 .btnDiv Button {
-  margin: 0 16px;
+  margin: 0 20px;
   height: 47px;
+  text-align: center;
 }
 
 .css-j204z7-MuiFormControlLabel-root {
@@ -68,14 +72,47 @@ nav {
 #mobileSearchBar {
   display: none;
 }
-@media (min-width: 200px) and (max-width: 500px) {
+#mobileOptions {
+  display: none;
+}
+.imgDiv {
+  margin-left: 16px;
+  width: 10%;
+  height: 47px;
+}
+.logo {
+  width: 80%;
+  height: 100%;
+}
+#desktopSearchBar {
+  display: flex;
+  width: 83%;
+  margin-left: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (min-width: 200px) and (max-width: 800px) {
   #mobileSearchBar {
     display: block;
+    width: 100%;
+    /* padding: 1rem; */
   }
   .search_bar {
-    width: 100vw;
+    margin-left: 8px;
+    width: 95vw;
   }
   #desktopSearchBar {
     display: none;
+  }
+  nav {
+    justify-content: space-between;
+  }
+  #mobileOptions {
+    margin-right: 2rem;
+    display: block;
+  }
+  .imgDiv {
+    width: 40%;
+    height: 47px;
   }
 }

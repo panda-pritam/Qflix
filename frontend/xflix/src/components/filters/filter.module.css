@@ -1,0 +1,111 @@
+.darkDiv {
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0px;
+}
+.darMobilekDiv {
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0px;
+}
+.lightDiv {
+  width: 100%;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0px;
+}
+.lightMobileDiv {
+  width: 100%;
+  background-color: white;
+  color: black;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0px;
+}
+.genreDiv {
+  margin: 16px 0px;
+  display: flex;
+}
+.ageGroupDiv {
+  margin: 16px 0px;
+  display: flex;
+}
+.darkBtn {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid white;
+  border-radius: 25px;
+  margin: 8px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.lightBtn {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 25px;
+  margin: 8px;
+}
+#selected {
+  background-color: greenyellow !important;
+  border: 3px solid rgb(0, 79, 0) !important;
+  color: black !important;
+}
+button:hover {
+  cursor: pointer;
+  background-color: rgb(103, 240, 103) !important;
+}
+.darkText {
+  text-align: center;
+}
+.lightText {
+  text-align: center;
+}
+.darkOptionDiv {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.lightOptionDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.options {
+  margin: 8px !important;
+}
+
+#MobileFilterFiltes {
+  display: none !important;
+}
+@media (min-width: 200px) and (max-width: 770px) {
+  /* … */
+  #DesktopFiltes {
+    display: none !important;
+  }
+  #MobileFilterFiltes {
+    display: block !important;
+  }
+}

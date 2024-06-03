@@ -1,4 +1,4 @@
-import { useEffect, useState, useStatecd } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@mui/system/Box";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -8,12 +8,16 @@ import styles from "./loginRegister.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { SnackbarProvider, useSnackbar } from "notistack";
+import { useSelector, useDispatch } from "react-redux";
 import login from "../../Api_calls/login";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 
 export default function Login() {
+  const { enqueueSnackbar } = useSnackbar();
   let [loginData, setLoginData] = useState({ email: "", password: "" });
   let [loader, setLoader] = useState(false);
-
+  let theam = useSelector((state) => state.theamReducer.theam);
   const navigate = useNavigate();
   let onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -22,24 +26,26 @@ export default function Login() {
     let data = await login(loginData);
     console.log(data);
     if (data) {
-      toast.success("Login successfully", {
-        theme: "colored",
-      });
+      enqueueSnackbar("Login successfully", { variant: "success" });
       localStorage.setItem("token", JSON.stringify({ token: data }));
       setLoader(false);
 
       navigate("/");
     } else {
-      toast.error("Please Enter correct email or password.", {
-        theme: "colored",
+      enqueueSnackbar("Please Enter correct email or password.", {
+        variant: "warning",
       });
+
       setLoader(false);
     }
   };
   return (
-    <Box className={styles.mainDiv}>
-      <ToastContainer position="top-center" />
-      <form onSubmit={onSubmitHandler}>
+    <Box className={theam === "dark" ? styles.darkDiv : styles.lightDiv}>
+      {/* <ToastContainer position="top-center" /> */}
+      <form
+        onSubmit={onSubmitHandler}
+        className={theam == "dark" ? styles.darkForm : styles.LightForm}
+      >
         <h1>Login Form</h1>
 
         <TextField
@@ -81,8 +87,11 @@ export default function Login() {
         />
 
         <div className={styles.BtnDiv}>
-          <Button onClick={(e) => navigate("/register")}>
-            Register your self
+          <Button
+            onClick={(e) => navigate("/register")}
+            id={theam == "dark" ? "darkBtn" : "lightBtn"}
+          >
+            <ArrowCircleLeftIcon /> Register your self
           </Button>
           <Button variant="contained" type="submit" size="large">
             Login

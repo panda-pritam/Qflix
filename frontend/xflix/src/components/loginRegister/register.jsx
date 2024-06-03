@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@mui/system/Box";
+import { useSelector, useDispatch } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -9,10 +10,12 @@ import { ToastContainer, toast } from "react-toastify";
 import register from "../../Api_calls/register";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 
 export default function Register() {
   const navigate = useNavigate();
   let [loader, setLoader] = useState(false);
+  let theam = useSelector((state) => state.theamReducer.theam);
   let [data, setData] = useState({
     name: "",
     email: "",
@@ -55,9 +58,12 @@ export default function Register() {
     setLoader(false);
   };
   return (
-    <Box className={styles.mainDiv}>
+    <Box className={theam === "dark" ? styles.darkDiv : styles.lightDiv}>
       <ToastContainer position="top-center" />
-      <form onSubmit={onSubmitHandler}>
+      <form
+        onSubmit={onSubmitHandler}
+        className={theam == "dark" ? styles.darkForm : styles.LightForm}
+      >
         <h1>Register your self to explore more fetures.</h1>
         <p>Please Enter your Details.</p>
         <TextField

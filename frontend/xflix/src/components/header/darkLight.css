@@ -1,0 +1,24 @@
+.darkNav {
+}
+.lightNavDiv {
+  /* display: flex;
+  justify-content: center; */
+  border-bottom: 2px solid black;
+}
+Button {
+  background-color: red !important;
+  font-weight: 700 !important;
+  color: white !important;
+}
+#lightImg {
+  color: black !important;
+}
+.darkNavDiv {
+  /* display: flex;
+  justify-content: center; */
+
+  width: 100%;
+  /* padding: 2%; */
+  background-color: rgb(24, 20, 20);
+  border-bottom: 2px solid white;
+}

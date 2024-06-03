@@ -1,0 +1,65 @@
+.mainDarkDiv {
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-sizing: border-box;
+}
+.mainLightDiv {
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+.darkVideoDiv {
+  width: 95%;
+  height: 80%;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+}
+.lightVideoDiv {
+  width: 95%;
+  height: 80%;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+}
+.infoDiv {
+  width: 95%;
+  padding: 1rem;
+}
+.titleDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0px;
+}
+.backToHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 1rem;
+  background-color: goldenrod !important;
+}
+.btn {
+  width: 70px;
+  margin: 0px 10px;
+  border-radius: 20px;
+}
+.titleTxt {
+  font-size: 17px;
+  font-weight: 700;
+}

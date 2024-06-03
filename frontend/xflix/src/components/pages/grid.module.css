@@ -1,0 +1,71 @@
+.lightGridItem {
+  width: 99%;
+  height: 400px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  margin: 2px;
+}
+.darkGridItem {
+  width: 99%;
+  height: 450px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.462);
+  margin: 2px;
+  border-radius: 8px;
+}
+.darkImgBox {
+  width: 99%;
+  height: 82%;
+  padding: 8px;
+  object-fit: cover;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.lightImgBox {
+  width: 99%;
+  height: 75%;
+  padding: 8px;
+  object-fit: cover;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.darkInfoBox {
+  padding: 8px;
+}
+.lightInfoBox {
+  padding: 8px;
+}
+.darkDateBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+.lightDateBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+p {
+  margin: 1px;
+}
+.titleText {
+  font-size: 17px;
+  font-weight: 700;
+}
+.Darklinks {
+  text-decoration: none !important;
+  color: whitesmoke !important;
+}
+.Lightlinks {
+  text-decoration: none !important;
+  color: black !important;
+}
