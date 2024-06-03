@@ -46,6 +46,15 @@ export default function VideoPlayer() {
   let updateView = async (id) => {
     let res = await axios.patch(`${URL}/v1/videos/${id}/views`);
   };
+  let getUrl = () => {
+    let url = "";
+    if (data) {
+      url = data.videoLink.startsWith("https://")
+        ? data.videoLink
+        : `https://${data.videoLink}`;
+    }
+    return url;
+  };
   useEffect(() => {
     setLoader(true);
     getVideoByID(id)
@@ -107,11 +116,7 @@ export default function VideoPlayer() {
                 theam == "dark" ? styles.darkVideoDiv : styles.lightVideoDiv
               }
             >
-              <iframe
-                width="100%"
-                height="100%"
-                src={`https://${data.videoLink}`}
-              ></iframe>
+              <iframe width="100%" height="100%" src={getUrl()}></iframe>
             </Box>
             <Box className={theam == "dark" ? styles.infoDiv : styles.infoDiv}>
               <Box

@@ -3,7 +3,7 @@ import searchIcon from "./search-icon.svg";
 import Box from "@mui/system/Box";
 import { URL } from "../../Api_calls/apiEndPoint";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { fetchVideoList } from "../../redux/slices/getAllVideosList";
@@ -18,6 +18,7 @@ import axios from "axios";
 export default function SerachBar() {
   const { enqueueSnackbar } = useSnackbar();
   let dispatch = useDispatch();
+  let navigate = useNavigate();
   //getSearchVideoListReducer
   //fetchSearchVideoList
   let filterObj = useSelector((state) => state.VideoListReducer.filters);
@@ -37,21 +38,40 @@ export default function SerachBar() {
   useEffect(() => {
     dispatch(fetchVideoList(filterObj));
   }, []);
+
+  //--------------------------------------------------------------------------------------------------
+
   useEffect(() => {
     // console.log("New Object with added title-> ", newObj);
-    dispatch(setIsSearching(true));
-    dispatch(setLoading(true));
-    if (timer) {
-      clearTimeout(timer);
-    }
-    let timerId = setTimeout(() => {
-      search(titleText);
-    }, 500);
-    setTimer(timerId);
+    // dispatch(setIsSearching(true));
+    // dispatch(setLoading(true));
+    // if (timer) {
+    //   clearTimeout(timer);
+    // }
+    // let timerId = setTimeout(() => {
+    //   search(titleText);
+    // }, 500);
+    // setTimer(timerId);
     if (titleText.length === 0) {
       dispatch(setIsSearching(false));
     }
   }, [titleText]);
+
+  //----------------------------------------------------------------------------------
+
+  const location = useLocation();
+  const { hash, pathname } = location;
+  let onClickHandler = async (e) => {
+    e.preventDefault();
+    if (pathname != "/") {
+      navigate("/");
+      // window.location.reload();
+    }
+    console.log("PAth name-> ", pathname, "Hash->", hash);
+    dispatch(setIsSearching(true));
+    dispatch(setLoading(true));
+    await search(titleText);
+  };
 
   let search = async (title) => {
     try {
@@ -60,7 +80,6 @@ export default function SerachBar() {
 
         console.log("API res->", res.data);
         dispatch(setList(res.data.videos));
-      } else {
       }
     } catch (error) {
       //   toast.error(
@@ -81,7 +100,7 @@ export default function SerachBar() {
   };
 
   return (
-    <Box className={styles.search_bar}>
+    <form className={styles.search_bar} onSubmit={onClickHandler}>
       <ToastContainer position="top-center" />
       <input
         className={styles.search_input}
@@ -89,10 +108,10 @@ export default function SerachBar() {
         value={titleText}
         onChange={onChangeHandler}
       />
-      <button className={styles.search_button}>
+      <button className={styles.search_button} type="submit">
         <img src={searchIcon} className={styles.logo_img}></img>
       </button>
-    </Box>
+    </form>
   );
 }
 

@@ -2,7 +2,7 @@ import { URL } from "./apiEndPoint";
 import axios from "axios";
 
 export default async function GetVideoList(data) {
-  console.log("Data from get all list->", data.genres.join(","));
+  // console.log("Data from get all list->", data.genres.join(","));
   let genres = data.genres.join(",");
 
   let contentRating;
@@ -10,7 +10,7 @@ export default async function GetVideoList(data) {
     contentRating = "Anyone";
   } else {
     contentRating = data.contentRating.replace("+", "%2B");
-    console.log(contentRating);
+    // console.log(contentRating);
   }
   //   let sortBy = data.sortBy === "" ? "" : data.sortBy;
 
@@ -26,7 +26,7 @@ export default async function GetVideoList(data) {
 
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return [];
     //console.warn(error);
   }

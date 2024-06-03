@@ -20,13 +20,11 @@ export default function VideosGrid() {
   let list = useSelector((state) => {
     return state.getVideoListReducer.list;
   });
-  console.log("List at grid", list);
+  // console.log("List at grid", list);
   //getVideoListReducer
   //fetchVideoList
   let loading = useSelector((state) => state.getVideoListReducer.loading);
-  console.log(loading);
-  let error = useSelector((state) => state.getVideoListReducer.error);
-  console.log(error);
+  // console.log(loading);
 
   // if (!error) {
   //   alert("No data found.");
@@ -43,11 +41,11 @@ export default function VideosGrid() {
   let isSearching = useSelector((state) => state.isSearching.isSearch);
   let searchVideoList = useSelector((state) => state.isSearching.list);
   let SearchLoading = useSelector((state) => state.isSearching.loading);
-  console.log("is Sch-> ", isSearching, "SRH List->", searchVideoList);
+  // console.log("is Sch-> ", isSearching, "SRH List->", searchVideoList);
   if (isSearching) {
     loading = SearchLoading;
   }
-  console.log(SearchLoading);
+  // console.log(SearchLoading);
   //--------------------------------------------------------------------------------------------------------
   return (
     <div>
@@ -74,7 +72,9 @@ export default function VideosGrid() {
             <GenerateGridItem list={searchVideoList} />
           </Grid>
         ) : (
-          <h1>Data not Found.</h1>
+          <h1 className={styles.noDataFound}>
+            Data not Found with this title.
+          </h1>
         )
       ) : loading ? (
         <Box

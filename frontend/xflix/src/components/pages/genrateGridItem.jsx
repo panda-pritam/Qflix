@@ -15,10 +15,10 @@ export default function GenerateGridItem({ list }) {
   let theam = useSelector((state) => state.theamReducer.theam);
   let isSearching = useSelector((state) => state.isSearching.isSearch);
   let searchVideoList = useSelector((state) => state.isSearching.list);
-  console.log(isSearching, searchVideoList);
+  // console.log(isSearching, searchVideoList);
   let navigate = useNavigate();
   let loading = useSelector((state) => state.getVideoListReducer.loading);
-  console.log("Generate grid-> ", list);
+  // console.log("Generate grid-> ", list);
   return list.map((ele) => {
     return (
       <Grid item xs={1} sm={4} md={3} key={ele._id}>

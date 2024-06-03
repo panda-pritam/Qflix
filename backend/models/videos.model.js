@@ -4,12 +4,13 @@ let validate = require("mongoose-validator");
 let ApiError = require("../utils/ApiError");
 let { contentRatings, genres, releaseDate } = require("../utils/values");
 //let videoRegex= /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(?:-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/;
-let videoRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/embed\/|youtu\.be\/)[a-zA-Z0-9_-]+$/;
+let videoRegex =
+  /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/embed\/|youtu\.be\/)[a-zA-Z0-9_-]+$/;
 //let imgRegex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/;
-let imgRegex= /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*\.(jpg|jpeg|png|gif|bmp|webp)/
+let imgRegex =
+  /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*\.(jpg|jpeg|png|gif|bmp|webp)/;
 let videosModel = mongoose.Schema(
   {
-    
     videoLink: {
       type: String,
       trim: true,
@@ -21,17 +22,16 @@ let videosModel = mongoose.Schema(
           console.log(value);
           console.log(videoRegex.test(value));
           if (!videoRegex.test(value)) {
-           
             throw new Error(
-              
-              "Invalid YouTube video format. It should be in the format 'https://www.youtube.com/embed/<youtube-video-id>' or 'youtube.com/embed/<youtube-video-id>'."
+              "Invalid YouTube video format. It should be in the format 'www.youtube.com/embed/<youtube-video-id>' or 'youtube.com/embed/<youtube-video-id>'."
             );
             //return false;
           }
           //message: 'Invalid YouTube video format. It should be in the format'
           return true;
         },
-        message: 'Invalid YouTube video format. It should be in the format ---- msg from mongo'
+        message:
+          "Invalid YouTube video format. It should be in the format ---- msg from mongo",
       },
 
       // validate: {
@@ -86,17 +86,15 @@ let videosModel = mongoose.Schema(
       type: String,
       // required: true,
       trim: true,
-      validate:{
-        validator(value){
-          if(!imgRegex.test(value))
-          {
+      validate: {
+        validator(value) {
+          if (!imgRegex.test(value)) {
             return false;
           }
           return true;
         },
-        message:"Please enter valid image URL."
-        
-      }
+        message: "Please enter valid image URL.",
+      },
     },
     votes: {
       upVotes: { type: Number, required: true, default: 0 },
@@ -106,7 +104,7 @@ let videosModel = mongoose.Schema(
       type: Number,
       default: 0,
     },
-  },
+  }
   // { versionKey: false }
 );
 

@@ -1,3 +1,6 @@
 #loaderDiv {
   width: 100vw;
 }
+.noDataFound {
+  text-align: center;
+}
